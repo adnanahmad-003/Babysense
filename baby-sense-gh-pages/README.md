@@ -17,10 +17,3 @@ Features
 6.Automated Fan Control: The system includes an automated fan control mechanism that adjusts the fan speed based on the room's temperature, ensuring optimal airflow for your baby's comfort.
 
 7.User-Friendly Website: BabySense provides a user-friendly website interface where you can conveniently observe and monitor your baby's activities. The website offers a range of features, including live video streaming, temperature and humidity graphs, cry detection alerts, and swing control options.
-
-Contact
-If you have any questions, suggestions, or feedback, please feel free to reach out at shirazyousuf2017@gmail.com.
-
-Link
-
-https://shiraz-2022.github.io/baby-sense/
