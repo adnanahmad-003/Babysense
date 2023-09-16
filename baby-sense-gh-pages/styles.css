@@ -1,0 +1,250 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Source Serif Pro', serif;
+    overflow-x: hidden;
+}
+
+hr::before{
+    content: "";
+    background: linear-gradient(to right, transparent, #818078, transparent);
+    position: absolute;
+    left :0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+}
+
+hr {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: 0.5;
+    margin: 3rem 0 3rem 0;
+}
+
+.header{
+    margin:20px auto;
+    max-width:calc(100% - 4rem);
+    display:flex;
+    justify-content: space-between;
+}
+
+/* ....................................navbar section.................................. */
+
+.header h1{
+    color:#bb7963;
+    margin:0 auto 0 20px;
+    font-weight: 700;
+}
+
+.header h1 span{
+    color:#6f6d73;
+}
+
+.header a{
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    font-weight:500;
+    color:#545454;
+    margin: auto;
+}
+
+.header a:hover{
+    color:#bb7963;
+}
+
+
+/* ...................................content section............................. */
+
+
+
+.content{
+    background-color:#fafafa;
+    display:flex;
+    margin:40px 30px;
+}
+
+.text-content{
+    margin:20px auto;
+    max-width:60%;
+    padding-left: 20px;
+}
+
+.text-content h1{
+    font-family: 'Noto Serif', serif;
+    margin-bottom:6rem;
+    color:#545454;
+    font-size:50px;
+}
+
+.text-content p{
+    color:#6f6d73;
+    font-size:25px;
+}
+
+.baby-image{
+    width: 40%;
+    background-image: url("images/BabySense.png");
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #545454;
+   
+}
+
+/* ....................................camera vedio section........................ */
+
+
+.camera{
+   display: flex;
+   justify-content: center;
+   max-width: calc(100% - 4rem);
+   margin: auto;
+   height:400px;
+}
+
+
+.states{
+    text-align: center;
+    background-color:#fafafa;
+    padding:4rem 0 5rem 0;
+    max-width:calc(100% - 4rem);
+    margin: auto;
+}
+
+.states h2{
+    font-family: 'Noto Serif', serif;
+    font-size:40px;
+    color:#545454;
+    margin-bottom:4rem;
+}
+
+.baby-image2{
+    width:fit-content;
+}
+
+
+.card-1-container{
+    display:flex;
+    justify-content: center;
+    margin-bottom:5rem;
+}
+
+.custom-card h5{
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    color:#bb7963;
+}
+
+.custom-card p{
+    font-family: 'Poppins', sans-serif;
+    color:#6f6d73;
+    text-align: left;
+}
+
+.card-2-3-container{
+    display:flex;
+    justify-content: center;
+    gap:5rem;
+}
+
+.custom-card{
+    border-radius:20px;
+    width:16rem;
+    box-shadow: 13px 6px 12px 3px rgba(111,112,112,1);
+    transition: width 300ms linear;
+}
+
+.custom-card:hover{
+    width:18rem;
+    box-shadow: 13px 6px 12px 3px rgb(97, 99, 99);
+}
+
+.custom-button {
+    border-radius: 12px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 19px;
+    padding: 10px 23px 10px 23px;
+    text-decoration: none;
+    border:none;
+    background-color: #676767;
+  }
+  
+  .custom-button:hover {
+    background: #a09ea3;
+  }
+
+
+
+  /*.............................................. media queries ..............................*/
+
+
+  @media screen and (max-width:765px){
+    .card-text p{
+        font-size:13px;
+    }
+
+    .card-title{
+        font-size:16px;
+    }
+
+    .custom-button{
+        font-size: 13px;
+        padding: 5px 10px;
+
+    }
+
+    .baby-image2 img{
+        width:9rem;
+    }
+
+    .card-2-3-container{
+        gap:1.5rem;
+    }
+
+    .text-content h1{
+        font-size:30px;
+    }
+    
+    .text-content p{
+        color:#6f6d73;
+        font-size:16px;
+    }
+
+    .states h2{
+        font-size:30px;
+    }
+    
+  }
+
+  @media screen and (max-width:550px){
+    .baby-image2 img{
+        display: none;
+    }
+
+    .text-content h1{
+        font-size:20px;
+    }
+    
+    .text-content p{
+        color:#6f6d73;
+        font-size:10px;
+    }
+
+    .states h2{
+        font-size:20px;
+    }
+
+    .header a{
+        font-size: 13px;
+    }
+  }
+
