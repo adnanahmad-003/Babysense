@@ -1,0 +1,114 @@
+#include <Arduino.h>
+#if defined(ESP32)
+  #include <WiFi.h>
+#elif defined(ESP8266)
+  #include <ESP8266WiFi.h>
+#endif
+#include <Firebase_ESP_Client.h>
+
+//Provide the token generation process info.
+#include "addons/TokenHelper.h"
+//Provide the RTDB payload printing info and other helper functions.
+#include "addons/RTDBHelper.h"
+
+
+//#include "DHT.h"        // including the library of DHT11 temperature and humidity sensor
+//#define DHTTYPE DHT11   // DHT 11
+
+//#define dht_dpin 0
+//DHT dht(dht_dpin, DHTTYPE); 
+
+// Insert your network credentials
+#define WIFI_SSID "POCO M2 Pro"
+#define WIFI_PASSWORD "adnan@658"
+
+// Insert Firebase project API Key
+#define API_KEY "AIzaSyA7qC3T_lATwwpECGHT8P4cMzVyIfCRjvw"
+
+// Insert RTDB URLefine the RTDB URL */
+#define DATABASE_URL "https://babycalmdown-default-rtdb.asia-southeast1.firebasedatabase.app/" 
+
+//Define Firebase Data object
+FirebaseData fbdo;
+
+FirebaseAuth auth;
+FirebaseConfig config;
+
+unsigned long sendDataPrevMillis = 0;
+
+bool signupOK = false;
+//float h;
+//float t;
+bool fan = false;
+
+
+
+void setup(){
+  //dht.begin();
+
+ // Serial.println("Humidity and temperature\n\n");
+  delay(700);
+  Serial.begin(115200);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("Connecting to Wi-Fi");
+  while (WiFi.status() != WL_CONNECTED){
+    Serial.print(".");
+    delay(300);
+  }
+  Serial.println();
+  Serial.print("Connected with IP: ");
+  Serial.println(WiFi.localIP());
+  Serial.println();
+
+  /* Assign the api key (required) */
+  config.api_key = API_KEY;
+
+  /* Assign the RTDB URL (required) */
+  config.database_url = DATABASE_URL;
+
+  /* Sign up */
+  if (Firebase.signUp(&config, &auth, "", "")){
+    Serial.println("ok");
+    signupOK = true;
+  }
+  else{
+    Serial.printf("%s\n", config.signer.signupError.message.c_str());
+  }
+
+  /* Assign the callback function for the long running token generation task */
+  config.token_status_callback = tokenStatusCallback; //see addons/TokenHelper.h
+  
+  Firebase.begin(&config, &auth);
+  Firebase.reconnectWiFi(true);
+}
+
+void loop(){
+  // float h = dht.readHumidity();
+   // float t = dht.readTemperature();         
+   // Serial.print("Current humidity = ");
+   // Serial.print(h);
+   // Serial.print("%  ");
+   // Serial.print("temperature = ");
+   // Serial.print(t); 
+   // Serial.println("C  ");
+  delay(800);
+  if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 5000 || sendDataPrevMillis == 0)){
+    sendDataPrevMillis = millis();
+    
+
+  
+   
+  // Read an digital value on the database path FanStatus
+    if (Firebase.RTDB.getBool(&fbdo, "FanStatus")){
+      fan=fbdo.boolData();
+      Serial.println(fan);
+      Serial.println("PATH: " + fbdo.dataPath());
+     // digitalWrite(,fan);
+   }
+    else {
+      Serial.println("FAILED");
+      Serial.println("REASON: " + fbdo.errorReason());
+    }
+  }
+}
+ 
